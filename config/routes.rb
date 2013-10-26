@@ -2,10 +2,13 @@ TaskManager::Application.routes.draw do
 
   devise_for :users
 
-  root to: "page#index"
+  root to: "pages#index"
 
-  resources :page, only: [:index]
-
+  namespace :api do
+    namespace :v1 do
+      resources :tasks, only: [:index]
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

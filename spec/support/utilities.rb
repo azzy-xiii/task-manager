@@ -5,3 +5,8 @@ def sign_in(user)
   fill_in 'Password', with: user.password
   click_button "Sign in"
 end
+
+def logged
+    user = FactoryGirl.create(:user)
+    sign_in user
+end
