@@ -28,6 +28,21 @@ describe Api::V1::TasksController do
   end
 
   describe "create" do
+    before do
+      task = {
+        task:{
+          description: 'something',
+          state: 'open',
+          performer: FactoryGirl.create(:user).id
+        }
+      }
+
+      post :create, task
+    end
+
+    it "should return response code 200" do
+      response.response_code.should eq(200)
+    end
 
   end
 
