@@ -5,6 +5,10 @@
   <%= javascript_include_tag 'application.js' %>
    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
+  <%- if user_signed_in? %>
+    <meta name="current-user" content="<%= UserSerializer.new(current_user).to_json(root: false) %>" />
+  <% end %>
 </head>
 <body>
   <div class="navbar">

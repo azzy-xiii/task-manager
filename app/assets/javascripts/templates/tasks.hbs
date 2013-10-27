@@ -1,5 +1,5 @@
 <h1>Your tasks:</h1>
-
+<button class='btn btn-large pull-right' {{action create}}>Create New</button>
 <table class="table tasks">
   <thead>
     <tr>
@@ -11,20 +11,18 @@
     </tr>
   </thead>
   <tbody>
-  {{#each controller}}
-      <tr>
+  {{#each}}
+      <tr {{action edit this}}>
         <td>{{created_at}}</td>
         <td>{{description}}</td>
         <td>{{owner.email}}</td>
         <td>{{state}}</td>
         <td>
-          actions
+          <button {{action delete this}}>delete</button>
         </td>
       </tr>
   {{/each}}
   </tbody>
 </table>
 
-<div class="modal">
   {{outlet modal}}
-</div>

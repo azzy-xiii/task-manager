@@ -1,0 +1,39 @@
+<div class="modal">
+  <div class="modal-header">
+    {{#if isNew}}
+      Create Task
+    {{else}}
+      Editing: {{unbound name}}
+    {{/if}}
+  </div>
+  <form {{action save on="submit"}}>
+    <div class="modal-body">
+        <label>Description</label>
+        {{textarea value=description cols = "40" row="6"}}
+        <label>Select state</label>
+        {{view Ember.Select content=states
+                            selection=current_state}}
+        <label>Assign Performer</label>
+        {{view Ember.Select
+                     content=controllers.users.content
+                     optionValuePath='content.id'
+                     optionLabelPath='content.email'
+                     selection=assignee
+        }}
+
+        {{#if isNew}}
+        {{else}}
+        <label>Created at:</label>
+        <p>{{created_at}}</p>
+        {{/if}}
+    </div>
+    <div class="modal-footer">
+      <button type="submit" >Save</button>
+      <button {{action close}}>Cancel</button>
+      {{#if isSaving}}
+        <img src="{{unbound TaskManager.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
+        Saving...
+      {{/if}}
+    </div>
+  </form>
+</div>

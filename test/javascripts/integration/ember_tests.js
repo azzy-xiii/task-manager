@@ -28,4 +28,12 @@ test("sort tasks", function(){
       descritpion = $.trim(find('tbody tr:first td:first').text());
       equal(descritpion, '2013-10-26 00:00:00');
   })
+
+test('new', function() {
+  visit('/').then(function() {
+    return click("button:contains('Create New')");
+  }).then(function() {
+
+  })
+})
 });
