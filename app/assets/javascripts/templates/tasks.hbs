@@ -1,0 +1,30 @@
+<h1>Your tasks:</h1>
+
+<table class="table tasks">
+  <thead>
+    <tr>
+      <th class="span2"><strong {{action sort 'created_at'}}>Created:</strong></th>
+      <th class="span4"><strong {{action sort 'description'}}>Description:</strong></th>
+      <th class="span2"><strong {{action sort 'owner.email'}}>Owner:</strong></th>
+      <th class="span1"><strong {{action sort 'state'}}>State:</strong></th>
+      <th class="span1">Actions:</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each controller}}
+      <tr>
+        <td>{{created_at}}</td>
+        <td>{{description}}</td>
+        <td>{{owner.email}}</td>
+        <td>{{state}}</td>
+        <td>
+          actions
+        </td>
+      </tr>
+  {{/each}}
+  </tbody>
+</table>
+
+<div class="modal">
+  {{outlet modal}}
+</div>

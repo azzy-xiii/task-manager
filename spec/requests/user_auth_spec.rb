@@ -37,4 +37,12 @@ describe "Auth pages" do
 
     end
   end
+
+  describe "non authenticated users" do
+    it "should be redirected" do
+      visit "/"
+
+      page.should have_content('Sign in')
+    end
+  end
 end

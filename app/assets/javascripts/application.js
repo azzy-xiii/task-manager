@@ -12,4 +12,40 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require task_manager
+
+// for more details see: http://emberjs.com/guides/application/
+TaskManager = Ember.Application.create();
+
+TaskManager.ApplicationAdapter = DS.RESTAdapter.extend({
+  namespace: 'api/v1'
+});
+
+TaskManager.ApplicationSerializer = DS.RESTSerializer.extend({
+  normalize: function(type, property, hash) {
+    var normalized = {}, normalizedProp;
+
+    for (var prop in hash) {
+      if (prop.substr(-3) === '_id') {
+        // belongsTo relationships
+        normalizedProp = prop.slice(0, -3);
+      } else if (prop.substr(-4) === '_ids') {
+        // hasMany relationship
+        normalizedProp = Ember.String.pluralize(prop.slice(0, -4));
+      } else {
+        // regualarAttribute
+        normalizedProp = prop;
+      }
+
+      normalizedProp = Ember.String.camelize(normalizedProp);
+      normalized[normalizedProp] = hash[prop];
+    }
+
+    return this._super(type, property, normalized);
+  }
+});
 //= require_tree .
