@@ -3,6 +3,7 @@ class Api::V1::TasksController < ApplicationController
 
   respond_to :json
 
+
   def index
     user = current_user.id
     respond_with Task.where("owner_id = ? OR performer_id = ?", user, user)
@@ -41,4 +42,5 @@ class Api::V1::TasksController < ApplicationController
       params[:task][:state]        = state
       params.require(:task).permit(:description, :state, :performer_id, :owner_id)
     end
+
 end

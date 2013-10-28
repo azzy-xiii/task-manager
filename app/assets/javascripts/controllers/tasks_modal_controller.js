@@ -12,6 +12,7 @@ TaskManager.TasksModalController = TaskManager.ModalController.extend({
     save: function() {
       var task = this.get('model');
       task.set('state',this.current_state );
+      console.log(this.assignee);
       task.set('performer',this.assignee);
       task.save();
     }

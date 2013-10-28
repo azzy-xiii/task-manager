@@ -12,7 +12,6 @@ TaskManager.TasksRoute = Ember.Route.extend({
       this.controllerFor('tasks.modal').create();
       this.send('openModal', 'tasks.modal');
     }
-
   }
 
 })

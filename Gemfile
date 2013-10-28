@@ -14,6 +14,9 @@ gem 'bootstrap-sass', '2.3.2.0'
 gem 'ember-rails'
 gem 'ember-data-source', '~> 1.0.0.beta.3'
 gem 'qunit-rails'
+gem 'faye'
+gem 'thin'
+
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
   gem 'factory_girl_rails'

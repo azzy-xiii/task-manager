@@ -44,10 +44,33 @@ describe Api::V1::TasksController do
       response.response_code.should eq(200)
     end
 
+    it "should return the created task" do
+      response.body.should include("something");
+    end
+
   end
 
   describe "update" do
+    before do
+      task = FactoryGirl.create(:task, description: "Pending task")
 
+      updates = {
+        task: {
+          id: task.id,
+          description: 'Updated task'
+        }
+      }
+
+      put :update, updates
+    end
+
+    it "should return code 200" do
+      response.response_code.should eq(200)
+    end
+
+    it "should return the updated task" do
+      response.body.should include('Updated task')
+    end
   end
 
   describe "delete" do
